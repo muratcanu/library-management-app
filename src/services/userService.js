@@ -3,7 +3,7 @@ import AppError from '../utils/appError.js';
 
 /**
  * Create a new user
- * @param {Object} userData - User data (name, field)
+ * @param {Object} userData - User data (name)
  * @returns {Promise<Object>} Created user
  */
 export const createUser = async (userData) => {
@@ -14,7 +14,7 @@ export const createUser = async (userData) => {
   try {
     const [user] = await db('users')
       .insert(userData)
-      .returning(['id', 'name', 'field', 'created_at']);
+      .returning(['id', 'name', 'created_at']);
     
     return user;
   } catch (error) {

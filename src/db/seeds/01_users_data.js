@@ -8,8 +8,8 @@ export async function seed(knex) {
 
   // Inserts seed entries
   await knex('users').insert([
-    { id: 1, name: 'John Doe', field: 'Computer Science' },
-    { id: 2, name: 'Jane Smith', field: 'Literature' },
-    { id: 3, name: 'Robert Johnson', field: 'Physics' }
+    { id: 1, name: 'John Doe' },
+    { id: 2, name: 'Jane Smith' },
+    { id: 3, name: 'Robert Johnson' }
   ]);
 }

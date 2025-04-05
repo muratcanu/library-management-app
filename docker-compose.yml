@@ -9,6 +9,9 @@ services:
       - db
     command: >
       sh -c "npm install && npm start"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       - NODE_ENV=development
       - PORT=3000
