@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import routes from './routes.js';
+import errorHandler from './middleware/errorHandler.js';
 
 // Load environment variables
 dotenv.config();
@@ -15,19 +17,24 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Library Management API' });
+    res.status(200).json({
+        status: 'success',
+        message: 'Welcome to Library Management API'
+    });
 });
 
-// API routes will be added here
-// app.use('/api', apiRoutes);
+// API routes
+app.use('/', routes);
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    message: 'Something went wrong!',
-    error: process.env.NODE_ENV === 'development' ? err.message : {}
-  });
+// Handle undefined routes
+app.all('*', (req, res, next) => {
+    const err = new Error(`Can't find ${req.originalUrl} on this server`);
+    err.statusCode = 404;
+    err.status = 'fail';
+    next(err);
 });
+
+// Global error handling middleware
+app.use(errorHandler);
 
 export default app;
