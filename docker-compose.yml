@@ -7,6 +7,10 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    command: >
+      sh -c "npm install &&
+             npx knex migrate:latest &&
+             npm start"
     environment:
       - NODE_ENV=development
       - PORT=3000
