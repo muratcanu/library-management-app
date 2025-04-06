@@ -15,7 +15,6 @@ export const createBook = async (bookData) => {
         const [book] = await db('books')
             .insert(bookData)
             .returning(['id', 'name', 'created_at']);
-
         return book;
     } catch (error) {
         if (error.code === '23505') {

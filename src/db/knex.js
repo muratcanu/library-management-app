@@ -20,7 +20,7 @@ const testConnection = async () => {
     }
 };
 
-// Execute connection test (but don't wait for it)
+// Execute connection test
 testConnection();
 
 export default db;

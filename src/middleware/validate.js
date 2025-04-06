@@ -2,14 +2,14 @@ import AppError from '../utils/appError.js';
 
 /**
  * Middleware to validate request using Joi schema
- * @param {Object} schema - Joi schema object with body, params, query keys
- * @returns {Function} Express middleware
+ * @param {Object} schema
+ * @returns {Function}
  */
 const validate = (schema) => (req, res, next) => {
     const validationOptions = {
-        abortEarly: false,  // Include all errors
-        allowUnknown: true, // Ignore unknown props
-        stripUnknown: true  // Remove unknown props
+        abortEarly: false,
+        allowUnknown: true,
+        stripUnknown: true
     };
 
     // Validate request body if schema.body is provided
